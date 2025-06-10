@@ -1,6 +1,6 @@
 # binary-search-trees
 
-# dsa-trees 🌳
+# dsa-trees
 
 Implementations of classic tree data-structures in JavaScript, built for practice and interview prep.
 
