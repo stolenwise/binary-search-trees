@@ -1,103 +1,99 @@
-# binary-search-trees
+Binary Search Trees
+An educational JavaScript implementation of an un-balanced Binary Search Tree (BST).
+The codebase is test-driven (Jest) and illustrates both iterative and recursive patterns for common BST operations.
 
-# dsa-trees
+Features
+Category	Methods
+Insertion	insert(val) • insertRecursively(val)
+Search	find(val) • findRecursively(val)
+Traversals	dfsPreOrder() • dfsInOrder() • dfsPostOrder() • bfs()
+Helpers	Node class, duplicate-value guard, chainable API
 
-Implementations of classic tree data-structures in JavaScript, built for practice and interview prep.
+All public methods return this where it makes sense so calls can be chained.
 
-| Structure    &        Key Methods Implemented |
-| ---------------- |                        ----------------------- |
-| General *n-ary* `Tree` & `sumValues`, `countEvens`, `numGreater` |
-| Binary Search-style `BinaryTree` &  `minDepth`, `maxDepth`, `maxSum`, `nextLarger`<br>`areCousins`, `serialize`, `deserialize`, `lowestCommonAncestor` |
-
-> **All Jest tests pass** (`npm test`).
-
----
-
-## Table of Contents
-1. [Getting Started](#getting-started)
-2. [Project Structure](#project-structure)
-3. [Usage Examples](#usage-examples)
-4. [Running Tests](#running-tests)
-5. [Roadmap](#roadmap)
-6. [License](#license)
-
----
-
-## Getting Started
-
-```bash
-git clone git@github.com:stolenwise/dsa-trees.git
-cd dsa-trees
-npm install     # installs Jest (dev) + any future deps
-npm test        # watch all specs turn green
-Project Structure
-php
+Installation
+bash
 Copy
 Edit
-dsa-trees/
-├── tree.js               # n-ary Tree & TreeNode
-├── binary-tree.js        # BinaryTree & BinaryTreeNode
-├── __tests__/            # Jest test suites
-│   ├── tree.test.js
-│   └── binary-tree.test.js
-├── package.json
-└── README.md
-
-Usage Examples
-General Tree
-js
-Copy
-Edit
-const { Tree, TreeNode } = require("./tree");
-
-// Build:        3
-//             / | \
-//            1  4  5
-const root = new TreeNode(3, [
-  new TreeNode(1),
-  new TreeNode(4),
-  new TreeNode(5)
-]);
-
-const t = new Tree(root);
-console.log(t.sumValues());    // → 13
-console.log(t.countEvens());   // → 1
-console.log(t.numGreater(3));  // → 2
-Binary Tree
-js
-Copy
-Edit
-const { BinaryTree, BinaryTreeNode } = require("./binary-tree");
-
-const root   = new BinaryTreeNode(6);
-root.left    = new BinaryTreeNode(5);
-root.right   = new BinaryTreeNode(5);
-const btree  = new BinaryTree(root);
-
-console.log(btree.maxDepth());       // → 2
-console.log(btree.nextLarger(4));    // → 5
-console.log(btree.minDepth());       // → 2
+git clone https://github.com/<your-handle>/binary-search-trees.git
+cd binary-search-trees
+npm install
 Running Tests
 bash
 Copy
 Edit
-npm test              # run entire suite
-npm test -- tree      # run only tree.test.js
-npm test -- -t maxSum # pattern-match specific test name
---watch is enabled by default so Jest re-runs on every save.
+npm test
+You should see all suites green:
 
-
-
-License
-MIT © 2025 Lewis Stone
-
-pgsql
+sql
 Copy
 Edit
+PASS  ./binary-search-tree.test.js
+  insert
+  insertRecursively
+  find
+  findRecursively
+  dfsPreOrder
+  dfsInOrder
+  dfsPostOrder
+  BFS
+Quick Start
+js
+Copy
+Edit
+const { BinarySearchTree } = require("./binary-search-tree");
 
-### How to customize quickly
-- Swap the MIT notice for whatever license you want.
-- If you eventually publish to npm or add CI, sprinkle in status badges.
-- Keep the **Roadmap** current – future you (and any collaborators) will thank you.
+const bst = new BinarySearchTree();
+bst.insert(15)
+   .insert(20)
+   .insert(10)
+   .insert(12)
+   .insert(1)
+   .insert(5)
+   .insert(50);
 
-Drop this in, commit, push, and your repo will look polished to anyone who lands on it.
+console.log(bst.dfsPreOrder());  // [15, 10, 1, 5, 12, 20, 50]
+console.log(bst.dfsInOrder());   // [1, 5, 10, 12, 15, 20, 50]  <- sorted
+console.log(bst.bfs());          // [15, 10, 20, 1, 12, 50, 5]
+API Reference
+Method	Description	Time <br>(average case)
+insert(val)	Iterative insert; returns tree	O(h)
+insertRecursively(val)	Recursive insert	O(h)
+find(val)	Iterative search; returns node or undefined	O(h)
+findRecursively(val)	Recursive search	O(h)
+dfsPreOrder()	Node → Left → Right traversal	O(n)
+dfsInOrder()	Left → Node → Right (sorted order)	O(n)
+dfsPostOrder()	Left → Right → Node	O(n)
+bfs()	Level-order traversal	O(n)
+
+h = tree height; n = number of nodes.
+Because the tree is not self-balancing, the worst-case height is n.
+
+Project Structure
+sql
+Copy
+Edit
+.
+├── binary-search-tree.js   # BST & Node classes
+├── binary-search-tree.test.js
+├── package.json
+└── README.md
+Future Work
+Self-balancing variants (AVL, Red-Black, Splay).
+
+Delete operation (remove(val)) with full test coverage.
+
+TypeScript port for richer typings.
+
+Benchmark harness comparing iterative vs. recursive performance.
+
+License
+MIT — see LICENSE for details.
+
+
+
+
+
+
+
+
